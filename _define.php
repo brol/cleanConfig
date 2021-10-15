@@ -28,12 +28,12 @@ $this->registerModule(
 	/* Name        */		"clean:config",
 	/* Description */		"Delete the blog settings or global settings",
 	/* Author      */		"Moe (http://gniark.net/), Pierre Van Glabeke",
-	/* Version     */		"1.4.5",
+	/* Version     */		"1.4.6",
 	/* Properties */
 	array(
 		'permissions' => null,
 		'type' => 'plugin',
-		'dc_min' => '2.9',
+		'dc_min' => '2.19',
 		'support' => 'http://lab.dotclear.org/wiki/plugin/cleanConfig',
 		'details' => 'http://plugins.dotaddict.org/dc2/details/cleanConfig'
 		)
