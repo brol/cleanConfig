@@ -125,8 +125,8 @@ class cleanconfig
 					else
 					{
 						$value = form::field(html::escapeHTML($ns.'_field'),40,
-							null,html::escapeHTML(($v['type'] == 'array' ? json_encode($v['value']) : $v['value'])),null,null,null,
-							'readonly="readonly"');
+							null,html::escapeHTML(($v['type'] == 'array' ? json_encode($v['value']) : $v['value'])),
+							);
 					}
 					$table->cell($value);
 					$table->cell($v['type']);
