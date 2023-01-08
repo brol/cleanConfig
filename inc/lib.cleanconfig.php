@@ -29,9 +29,8 @@ class cleanconfig
 
 	public static function delete($namespace,$setting,$limit)
 	{
-		global $core;
 		
-		$set =& $core->blog->settings;
+		$set =& dcCore::app()->blog->settings;
 
 		if ($limit == 'blog')
 		{
@@ -40,11 +39,11 @@ class cleanconfig
 		elseif ($limit == 'global')
 		{
 			# inspired by drop() function in /dotclear/inc/core/class.dc.settings.php
-			$strReq = 'DELETE FROM '.$core->prefix.'setting'.' ';
+			$strReq = 'DELETE FROM '.dcCore::app()->prefix.'setting'.' ';
 			$strReq .= 'WHERE blog_id IS NULL ';
-			$strReq .= "AND setting_id = '".$core->con->escape($setting)."' ";
+			$strReq .= "AND setting_id = '".dcCore::app()->con->escape($setting)."' ";
 	
-			$core->con->execute($strReq);
+			dcCore::app()->con->execute($strReq);
 		}
 		else
 		{
@@ -54,9 +53,8 @@ class cleanconfig
 
 	public static function settings($limit)
 	{
-		global $core;
 		
-		$set =& $core->blog->settings;
+		$set =& dcCore::app()->blog->settings;
 
 		$str = '<p>'.__('Use carefully. Only settings related to plugins can be deleted.').'</p>'."\n";
 		$str .= '<form method="post" action="'.http::getSelfURI().'">'."\n";
@@ -148,7 +146,7 @@ class cleanconfig
 		{
 			$str .= ('<p class="checkboxes-helpers"></p>'.
 			'<p>'.form::hidden(array('limit',$limit),$limit).
-			'<p>'.$core->formNonce().'</p>'.
+			'<p>'.dcCore::app()->formNonce().'</p>'.
 			'<input type="submit" name="delete" value="'.
 				__('Delete selected settings').'" /></p>');
 		}

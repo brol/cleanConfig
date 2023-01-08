@@ -24,19 +24,28 @@
 
 if (!defined('DC_CONTEXT_ADMIN')) {exit;}
 
-$_menu['Plugins']->addItem(__('clean:config'),'plugin.php?p=cleanConfig',
-	'index.php?pf=cleanConfig/icon.png',preg_match('/plugin.php\?p=cleanConfig(&.*)?$/',
-	$_SERVER['REQUEST_URI']),$core->auth->check('admin',$core->blog->id));
-	
-$core->addBehavior('adminDashboardFavorites','cleanConfigDashboardFavorites');
+dcCore::app()->menu[dcAdmin::MENU_SYSTEM]->addItem(
+    __('clean:config'),
+    dcCore::app()->adminurl->get('admin.plugin.cleanConfig'),
+    dcPage::getPF('cleanConfig/icon.png'),
+    preg_match('/' . preg_quote(dcCore::app()->adminurl->get('admin.plugin.cleanConfig')) . '(&.*)?$/', $_SERVER['REQUEST_URI']),
+    dcCore::app()->auth->isSuperAdmin()
+);
 
-function cleanConfigDashboardFavorites($core,$favs)
+dcCore::app()->addBehavior('adminDashboardFavoritesV2', ['errorloggerDashboard','dashboardFavs']);
+
+class errorloggerDashboard
 {
-	$favs->register('cleanConfig', array(
-		'title' => __('clean:config'),
-		'url' => 'plugin.php?p=cleanConfig',
-		'small-icon' => 'index.php?pf=cleanConfig/icon.png',
-		'large-icon' => 'index.php?pf=cleanConfig/icon-big.png',
-		'permissions' => 'usage,contentadmin'
-	));
+    public static function dashboardFavs($favs)
+    {
+        $favs->register('cleanConfig', [
+            'title'       => __('Error Logger'),
+            'url'         => dcCore::app()->adminurl->get('admin.plugin.cleanConfig'),
+            'small-icon'  => dcPage::getPF('cleanConfig/icon.png'),
+            'large-icon'  => dcPage::getPF('cleanConfig/icon-big.png'),
+            'permissions' => dcCore::app()->auth->makePermissions([
+                dcAuth::PERMISSION_ADMIN,
+            ]),
+        ]);
+    }
 }

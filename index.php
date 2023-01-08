@@ -24,7 +24,7 @@
 
 if (!defined('DC_CONTEXT_ADMIN')) {exit;}
 
-l10n::set(dirname(__FILE__).'/locales/'.$_lang.'/admin');
+l10n::set(__DIR__ . '/locales/' . dcCore::app()->lang . '/admin');
 
 $page_title = __('clean:config');
 
@@ -54,7 +54,7 @@ if ((isset($_POST['delete'])) AND (($limit == 'blog') OR ($limit == 'global')))
 		}
 		$msg = '<div class="message"><p>'.
 		
-		http::redirect($p_url.'&amp;settingsdeleted=1&amp;limit='.$limit);
+		http::redirect(dcCore::app()->admin->getPageURL().'&amp;settingsdeleted=1&amp;limit='.$limit);
 	}
 }
 
@@ -98,7 +98,7 @@ if (isset($_GET['settingsdeleted']))
 <?php
 	echo dcPage::breadcrumb(
 		array(
-			html::escapeHTML($core->blog->name) => '',
+			html::escapeHTML(dcCore::app()->blog->name) => '',
 			'<span class="page-title">'.$page_title.'</span>' => ''
 		));
 if (!empty($msg)) {
