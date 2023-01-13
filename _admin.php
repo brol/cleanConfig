@@ -22,20 +22,16 @@ dcCore::app()->menu[dcAdmin::MENU_SYSTEM]->addItem(
     dcCore::app()->auth->isSuperAdmin()
 );
 
-dcCore::app()->addBehavior('adminDashboardFavoritesV2', ['cleanConfigDashboard','dashboardFavs']);
-
-class cleanConfigDashboard
-{
-    public static function dashboardFavs($favs)
-    {
-        $favs->register('cleanConfig', [
-            'title'       => __('Error Logger'),
-            'url'         => dcCore::app()->adminurl->get('admin.plugin.cleanConfig'),
-            'small-icon'  => dcPage::getPF('cleanConfig/icon.png'),
-            'large-icon'  => dcPage::getPF('cleanConfig/icon-big.png'),
-            'permissions' => dcCore::app()->auth->makePermissions([
-                dcAuth::PERMISSION_ADMIN,
-            ]),
-        ]);
-    }
-}
+// Admin dashbaord favorite
+dcCore::app()->addBehavior('adminDashboardFavoritesV2', function ($favs) {
+    $favs->register(basename(__DIR__), [
+        'title'       => __('clean:config'),
+        'url'         => dcCore::app()->adminurl->get('admin.plugin.' . basename(__DIR__)),
+        'small-icon'  => dcPage::getPF(basename(__DIR__) . '/icon.png'),
+        'large-icon'  => dcPage::getPF(basename(__DIR__) . '/icon-big.png'),
+        'permissions' => dcCore::app()->auth->makePermissions([
+			dcAuth::PERMISSION_USAGE,
+            dcAuth::PERMISSION_ADMIN,
+        ]),
+    ]);
+});
