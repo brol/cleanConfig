@@ -1,23 +1,17 @@
 <?php 
-# ***** BEGIN LICENSE BLOCK *****
-#
-# This file is part of PHP XHTML Table.
-# Copyright (C) 2007-2016 Moe (http://gniark.net/)
-#
-# PHP XHTML Table is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
-#
-# PHP XHTML Table is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# ***** END LICENSE BLOCK *****
+/**
+ * @brief cleanConfig, a plugin for Dotclear 2
+ *
+ * @package Dotclear
+ * @subpackage Plugin
+ *
+ * @author Moe, Pierre Van Glabeke and contributors
+ *
+ * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Icon (icon.png) and images are from Silk Icons :
+ * <http://www.famfamfam.com/lab/icons/silk/>
+ */
 
 /**
 @defgroup Table PHP XHTML Table
@@ -31,7 +25,6 @@
 */
 class table
 {
-
 	private $table_extra_html;	///< <b>string</b>		&lt;table&gt; extra HTML
 
 	private $part;	///< <b>string</b>		Part
