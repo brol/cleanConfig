@@ -15,16 +15,17 @@
 if (!defined('DC_RC_PATH')) {return;}
 
 $this->registerModule(
-	/* Name        */		"clean:config",
-	/* Description */		"Delete the blog settings or global settings",
-	/* Author      */		"Moe (http://gniark.net/), Pierre Van Glabeke",
-	/* Version     */		"1.4.7-dev",
-	/* Properties */
-	array(
-		'permissions' => null,
-		'type' => 'plugin',
-		'requires' => [['core', '2.24']],
-		'support' => 'http://lab.dotclear.org/wiki/plugin/cleanConfig',
-		'details' => 'http://plugins.dotaddict.org/dc2/details/cleanConfig'
-		)
+    'clean:config',
+    'Delete the blog settings or global settings',
+    'Moe (http://gniark.net/), Pierre Van Glabeke and contributors',
+    '1.4.7-dev',
+    [
+        'requires'    => [['core', '2.24']],
+        'permissions' => dcCore::app()->auth->makePermissions([
+            dcAuth::PERMISSION_ADMIN,
+        ]),
+        'type'       => 'plugin',
+        'support'    => 'http://lab.dotclear.org/wiki/plugin/cleanConfig',
+        'details'    => 'https://plugins.dotaddict.org/dc2/details/' . basename(__DIR__),
+    ]
 );
