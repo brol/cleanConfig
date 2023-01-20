@@ -104,11 +104,5 @@ if (!empty($msg)) {
 		<?php echo(cleanconfig::settings('global')); ?>
 	</div>
 
-	<div class="multi-part" id="versions" title="<?php echo __('Versions'); ?>">
-		<p><?php printf(__('This function has been moved to the %s plugin.'),
-			'<a href="http://plugins.dotaddict.org/dc2/details/versionsManager">'.
-			__('Versions Manager').'</a>'); ?></p>
-	</div>
-
 </body>
 </html>
