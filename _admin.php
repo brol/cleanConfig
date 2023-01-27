@@ -16,11 +16,15 @@ if (!defined('DC_CONTEXT_ADMIN')) {exit;}
 
 l10n::set(dirname(__FILE__).'/locales/'.dcCore::app()->lang.'/admin');
 
+// Admin sidebar menu
 dcCore::app()->menu[dcAdmin::MENU_PLUGINS]->addItem(
     __('clean:config'),
-    dcCore::app()->adminurl->get('admin.plugin.cleanConfig'),
-    dcPage::getPF('cleanConfig/icon.png'),
-    preg_match('/' . preg_quote(dcCore::app()->adminurl->get('admin.plugin.cleanConfig')) . '(&.*)?$/', $_SERVER['REQUEST_URI']),
+    dcCore::app()->adminurl->get('admin.plugin.' . basename(__DIR__)),
+    dcPage::getPF(basename(__DIR__) . '/icon.png'),
+    preg_match(
+        '/' . preg_quote(dcCore::app()->adminurl->get('admin.plugin.' . basename(__DIR__))) . '(&.*)?$/',
+        $_SERVER['REQUEST_URI']
+    ),
     dcCore::app()->auth->isSuperAdmin()
 );
 
@@ -32,7 +36,7 @@ dcCore::app()->addBehavior('adminDashboardFavoritesV2', function ($favs) {
         'small-icon'  => dcPage::getPF(basename(__DIR__) . '/icon.png'),
         'large-icon'  => dcPage::getPF(basename(__DIR__) . '/icon-big.png'),
         'permissions' => dcCore::app()->auth->makePermissions([
-			dcAuth::PERMISSION_USAGE,
+						dcAuth::PERMISSION_USAGE,
             dcAuth::PERMISSION_ADMIN,
         ]),
     ]);
